@@ -29,7 +29,7 @@ import {
   TextInput,
   Title,
 } from '@patternfly/react-core'
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import {
   CurrentRecording,
   flightRecorderService,
@@ -55,12 +55,51 @@ export const FlightRecorder: React.FunctionComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [isConfigurationsDropdownOpen, setIsConfigurationsDropdownOpen] = useState<boolean>(false)
   const [isLimitTypeOpen, setIsLimitTypeOpen] = useState<boolean>(false)
+  const [timeRecording, setTimeRecording] = useState<number>(0)
+  const [startTimeRecording, setStartTimeRecording] = useState<number>(Date.now())
 
   const LIMIT_TYPE: { label: string; value: string }[] = [
     { label: 'Unlimited', value: 'unlimited' },
     { label: 'Duration', value: 'duration' },
     { label: 'Size', value: 'maxSize' },
   ]
+  const humanReadableBytes = (bytes: number) => {
+    const BYTE_DIVISOR = 1024
+    const UNITS = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+
+    let unit = 0
+    let currentDividedNumber = bytes
+
+    while (currentDividedNumber > BYTE_DIVISOR) {
+      unit++
+      currentDividedNumber = currentDividedNumber / BYTE_DIVISOR
+    }
+
+    return currentDividedNumber.toFixed(0) + ' ' + UNITS[unit]
+  }
+
+  const isCurrentlyRecording = useRef(() => flightRecorderService.currentRecording.state)
+
+  useEffect(() => {
+    return () => {
+      if (isCurrentlyRecording.current() == RecordingState.RECORDING) {
+        flightRecorderService.stopRecording()
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    //This is a best effort as there were some problems trying to keep the state updated
+    setTimeRecording(0)
+
+    const intervalID = setInterval(() => {
+      setTimeRecording(Math.round((Date.now() - startTimeRecording) / 1000))
+    }, 1000)
+
+    return () => {
+      clearInterval(intervalID)
+    }
+  }, [startTimeRecording])
 
   useEffect(() => {
     if (!initialized)
@@ -264,7 +303,9 @@ export const FlightRecorder: React.FunctionComponent = () => {
           <Flex direction={{ md: 'column' }} alignContent={{ md: 'alignContentCenter' }}>
             <CardHeader className='flight-recorder-recording-text'>
               <Title headingLevel='h3'>
-                {currentRecording?.state == RecordingState.RECORDING ? 'Currently recording...' : 'Ready to record'}
+                {currentRecording?.state == RecordingState.RECORDING
+                  ? `Recording... ${timeRecording}s`
+                  : 'Ready to record'}
               </Title>
             </CardHeader>
             <ActionList>
@@ -274,6 +315,7 @@ export const FlightRecorder: React.FunctionComponent = () => {
                   onClick={() =>
                     flightRecorderService.startRecording(userJfrSettings).then(() => {
                       startRecordingAlert()
+                      setStartTimeRecording(Date.now())
                     })
                   }
                 >
@@ -292,6 +334,7 @@ export const FlightRecorder: React.FunctionComponent = () => {
                       setRecordings(flightRecorderService.recordings)
                       setCurrentRecording(flightRecorderService.currentRecording)
                       setUserJfrSettings(flightRecorderService.userJfrSettings)
+                      setStartTimeRecording(Date.now())
                     })
                   }}
                 >
@@ -317,7 +360,7 @@ export const FlightRecorder: React.FunctionComponent = () => {
           <Table>
             <Thead>
               <Tr>
-                <Th>Record number</Th>
+                <Th>Record</Th>
                 <Th>Name</Th>
                 <Th>Size</Th>
                 <Th>Date</Th>
@@ -331,7 +374,7 @@ export const FlightRecorder: React.FunctionComponent = () => {
                   <Tr key={number}>
                     <Td>{number}</Td>
                     <Td>{file}</Td>
-                    <Td>{size}</Td>
+                    <Td>{humanReadableBytes(Number.parseInt(size))}</Td>
                     <Td>{new Date(time).toUTCString()}</Td>
                     <Td>
                       <Button
