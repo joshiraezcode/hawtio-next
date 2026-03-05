@@ -71,7 +71,7 @@ All notable changes to this project will be documented in this file. See [commit
 * **charts:** Drill into java.lang:type=Memory attributes to get real numbers (fixes [#1819](https://github.com/hawtio/hawtio-next/issues/1819)) ([d524dbb](https://github.com/hawtio/hawtio-next/commit/d524dbbfec92f67afc82b2d40dc5f652027fa06e))
 * **charts:** Update state using setChartData(old => new) (fixes [#1804](https://github.com/hawtio/hawtio-next/issues/1804)) ([07f1200](https://github.com/hawtio/hawtio-next/commit/07f1200bc2fe7cc237d58bead1052e843c6411ed))
 * **connect:** adjust PF v6 styles for Connect plugin ([9b077a0](https://github.com/hawtio/hawtio-next/commit/9b077a01ad7d27caf8a6b93d5ca9d7a925928a5d))
-* **diagnostics:** adjust PF v6 styles for Diagnostics plugin ([fcd8077](https://github.com/hawtio/hawtio-next/commit/fcd8077a6d63ecc1977dbf7736fdca59d4327c24))
+* **jvm-diagnostis:** adjust PF v6 styles for Diagnostics plugin ([fcd8077](https://github.com/hawtio/hawtio-next/commit/fcd8077a6d63ecc1977dbf7736fdca59d4327c24))
 * **help:** adjust PF v6 styles for Hawtio Help ([cbc1716](https://github.com/hawtio/hawtio-next/commit/cbc17165e9f4e4dfd36c2e878b60aaf9c71c1b42))
 * **jmx:** adjust PF v6 styles for JMX plugin ([44e8eca](https://github.com/hawtio/hawtio-next/commit/44e8eca8f97a66f95ebfc6d749bec113ff06d0dc))
 * **jolokia:** Add canRead/canWrite to OptimisedMBeanAttribute type (fixes [#1805](https://github.com/hawtio/hawtio-next/issues/1805)) ([e5c48f3](https://github.com/hawtio/hawtio-next/commit/e5c48f388e6b10b33284755fe3b77121eeacfed4))
@@ -119,7 +119,7 @@ All notable changes to this project will be documented in this file. See [commit
 ### Features
 
 * **camel:** add debug step over/skip over functions for Camel 4.14+ ([b8d657f](https://github.com/hawtio/hawtio-next/commit/b8d657f11e06e33a39bbf9b48e531091f31ddae0)), closes [#1645](https://github.com/hawtio/hawtio-next/issues/1645)
-* **diagnostics:** Flight Recorder plugin ([#643](https://github.com/hawtio/hawtio-next/issues/643)) ([a8cf897](https://github.com/hawtio/hawtio-next/commit/a8cf897d45a5f2523ccb7e423103b8584b2ae383))
+* **jvm-diagnostis:** Flight Recorder plugin ([#643](https://github.com/hawtio/hawtio-next/issues/643)) ([a8cf897](https://github.com/hawtio/hawtio-next/commit/a8cf897d45a5f2523ccb7e423103b8584b2ae383))
 
 
 ### Bug Fixes
