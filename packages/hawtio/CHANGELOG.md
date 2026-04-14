@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.1](https://github.com/hawtio/hawtio-react/compare/v2.0.0...v2.0.1) (2026-04-14)
+
+
+### Bug Fixes
+
+* Corrects the height of the XML source code editor ([8a1ec2e](https://github.com/hawtio/hawtio-react/commit/8a1ec2ee847169edb9208caa4ec8dcaef1617700))
+* **jmx:** Ensure MBean finding works by quoted and unquoted values (fixes [#1955](https://github.com/hawtio/hawtio-react/issues/1955)) ([27c4ef6](https://github.com/hawtio/hawtio-react/commit/27c4ef6df9ee671baf89ba69c957e70c979dc7bd))
+* **jmx:** Parse MBean names using parser, not RegExp (fixes [#1952](https://github.com/hawtio/hawtio-react/issues/1952)) ([4338110](https://github.com/hawtio/hawtio-react/commit/43381104b2d43fd78edd1b205d31cafb89e7f99c))
+* Makes PF/Monaco source code editor observe the theme of the browser ([0da45c6](https://github.com/hawtio/hawtio-react/commit/0da45c6224233566380e7e1dfbc78bec2bb3ec5a))
+
 ## [2.0.0](https://github.com/hawtio/hawtio-react/compare/v2.0.0-pre.0...v2.0.0) (2026-03-11)
 
 
