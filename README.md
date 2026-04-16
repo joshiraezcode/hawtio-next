@@ -8,6 +8,7 @@
 [![Test](https://github.com/hawtio/hawtio-react/actions/workflows/test.yml/badge.svg)](https://github.com/hawtio/hawtio-react/actions/workflows/test.yml)
 [![E2E Test](https://github.com/hawtio/hawtio-react/actions/workflows/e2e-test.yml/badge.svg)](https://github.com/hawtio/hawtio-react/actions/workflows/e2e-test.yml)
 [![Lint](https://github.com/hawtio/hawtio-react/actions/workflows/lint.yml/badge.svg)](https://github.com/hawtio/hawtio-react/actions/workflows/lint.yml)
+[![npm](https://img.shields.io/npm/v/@hawtio/react)](https://www.npmjs.com/package/@hawtio/react)
 
 A Hawtio reimplementation based on TypeScript + React.
 This project reimplements the following Hawtio JS components in one project:
