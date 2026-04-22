@@ -67,16 +67,24 @@ export type BrandingConfig = {
  * Appearance configuration type.
  */
 export type AppearanceConfig = {
-  // Whether to display the header bar (default: true)
+  /**
+   * Whether to display the header bar (default: true)
+   */
   showHeader?: boolean
 
-  // Whether to display the brand logo on the header bar (default: true)
+  /**
+   * Whether to display the brand logo on the header bar (default: true)
+   */
   showBrand?: boolean
 
-  // Whether to display the user header dropdown on the header bar (default: true)
+  /**
+   * Whether to display the user header dropdown on the header bar (default: true)
+   */
   showUserHeader?: boolean
 
-  // Whether to display the sidebar (default: true)
+  /**
+   * Whether to display the sidebar (default: true)
+   */
   showSideBar?: boolean
 }
 
