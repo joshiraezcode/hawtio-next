@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.1.0](https://github.com/hawtio/hawtio-react/compare/v2.0.2...v2.1.0) (2026-04-23)
+
+
+### Features
+
+* **ui:** Add option in hawtconfig.json for dark-mode logo (fixes [#2053](https://github.com/hawtio/hawtio-react/issues/2053)) ([47ef5b4](https://github.com/hawtio/hawtio-react/commit/47ef5b46d40762d68b638e7f2ada0e2040594ac8))
+
+
+### Bug Fixes
+
+* **types:** Fix TS errors after enabling type checking ([87fc6d8](https://github.com/hawtio/hawtio-react/commit/87fc6d822c9b9a39491addf9fec712e02f7f72a4))
+* **ui:** Fix dark-mode url and app name (fixes [#2056](https://github.com/hawtio/hawtio-react/issues/2056), fixes [#2057](https://github.com/hawtio/hawtio-react/issues/2057)) ([4a6c8ad](https://github.com/hawtio/hawtio-react/commit/4a6c8addcd6fe9d96e41856771bd518ad14837b8))
+
 ## [2.0.2](https://github.com/hawtio/hawtio-react/compare/v2.0.1...v2.0.2) (2026-04-15)
 
 
