@@ -6,13 +6,25 @@ import { eventService } from '@hawtiosrc/core'
 class RuntimeService {
   handlers: number[] = []
 
-  convertMsToDaysHours(ms: number): string {
+  convertMsToHumanReadable(ms: number): string {
     const seconds = Math.floor(ms / 1000)
     const minutes = Math.floor(seconds / 60)
     const hours = Math.floor(minutes / 60)
     const days = Math.floor(hours / 24)
 
-    return `${days} days, ${hours % 24} hours`
+    let toHumanReadable
+
+    if (days != 0) {
+      toHumanReadable = `${days} days, ${hours % 24} hours`
+    } else {
+      if (hours != 0) {
+        toHumanReadable = `${hours} hours, ${minutes % 60} minutes`
+      } else {
+        toHumanReadable = `${minutes} minutes, ${seconds % 60} seconds`
+      }
+    }
+
+    return toHumanReadable
   }
 
   async loadSystemProperties(): Promise<SystemProperty[]> {
@@ -181,7 +193,7 @@ class RuntimeService {
           Uptime: number
         }
         callback({ type: 'JVM', name: 'Start time', value: new Date(runtimeMetrics.StartTime).toLocaleString() })
-        callback({ type: 'JVM', name: 'Uptime', value: this.convertMsToDaysHours(runtimeMetrics.Uptime) })
+        callback({ type: 'JVM', name: 'Uptime', value: this.convertMsToHumanReadable(runtimeMetrics.Uptime) })
         break
       }
     }
