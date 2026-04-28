@@ -147,3 +147,24 @@
 .disabled {
   background-color: var(--pf-t--color--disabled--200) !important;
 }
+
+.sticky-note {
+  position: relative;
+  float: left;
+  padding-top: 20px;
+  margin-top: -30px;
+  z-index: 777;
+}
+
+.sticky-note-content {
+  position: relative;
+  background: #ffa;
+  overflow: hidden;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 0 0 0 30px/45px;
+  box-shadow:
+    inset 0 -40px 40px rgba(0, 0, 0, 0.2),
+    inset 0 25px 10px rgba(0, 0, 0, 0.2),
+    0 5px 6px 5px rgba(0, 0, 0, 0.2);
+}
