@@ -16,7 +16,7 @@ export type CamelNodeData = {
   group: 1
   disabled: boolean
   routeStopped: boolean
-
+  note: string
   elementId: string | null
   imageUrl: ReactNode
   cid: string
@@ -226,6 +226,7 @@ class VisualizationService {
         }
 
         let cid = routeElement.getAttribute('_cid') || routeElement.getAttribute('id')
+        const note = routeElement.getAttribute('note') || ''
         const parallelProcessing: boolean = routeElement.getAttribute('parallelProcessing')?.toLowerCase() === 'true'
         nodeData = {
           id,
@@ -240,6 +241,7 @@ class VisualizationService {
           imageUrl,
           cid: cid ?? id,
           tooltip,
+          note,
           type: nodeId,
           uri: uri ?? '',
           routeId,

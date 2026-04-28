@@ -1,8 +1,8 @@
 import { eventService } from '@hawtiosrc/core'
 import { MBeanNode } from '@hawtiosrc/plugins/shared'
-import { Switch, Title, EmptyState, EmptyStateBody } from '@patternfly/react-core'
+import { Switch, Title, EmptyState, EmptyStateBody, Icon, Popover } from '@patternfly/react-core'
 import { Table, Tbody, Td, Tr } from '@patternfly/react-table'
-import { ExclamationCircleIcon } from '@patternfly/react-icons'
+import { ExclamationCircleIcon, StickyNoteIcon } from '@patternfly/react-icons'
 import React, { RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import {
   Connection,
@@ -295,6 +295,17 @@ const CamelNode: React.FunctionComponent<NodeProps<CamelNodeData>> = ({
       {showStatistics && (
         <NodeToolbar isVisible={isVisible} position={Position.Bottom} style={{ marginTop: '-30px' }}>
           <div className='node-tooltip'>
+            {data.note && (
+              <Popover
+                triggerAction='hover'
+                showClose={false}
+                bodyContent={<div className='sticky-note-content'>{data.note}</div>}
+              >
+                <Icon size='sm' className='sticky-note'>
+                  <StickyNoteIcon />
+                </Icon>
+              </Popover>
+            )}
             {!data.stats && data.label}
             {data.stats && !showFull && (
               <Table variant='compact'>
