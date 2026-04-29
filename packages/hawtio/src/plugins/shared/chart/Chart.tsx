@@ -27,6 +27,7 @@ import Jolokia, {
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { attributeService } from '../attributes/attribute-service'
 import { WatchableAttributesForm } from './WatchableAttributesForm'
+import './Chart.css'
 
 type MBeanChartData = {
   [name: string]: { attributes: AttributeChartEntries }
@@ -324,7 +325,7 @@ export const Chart: React.FunctionComponent = () => {
   return (
     <React.Fragment>
       {watchableAttributesForm}
-      <Grid hasGutter span={12} xl2={6}>
+      <Grid hasGutter span={12} xl2={6} className='camel-chart'>
         <GridItem span={12}>
           <Card isPlain>
             <CardHeader

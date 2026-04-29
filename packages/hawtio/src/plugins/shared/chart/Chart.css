@@ -1,0 +1,4 @@
+.pf-v6-theme-dark .camel-chart tspan {
+  color: var(--pf-t--color--white);
+  fill: var(--pf-t--color--white) !important;
+}

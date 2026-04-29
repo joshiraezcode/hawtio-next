@@ -147,3 +147,20 @@
 .disabled {
   background-color: var(--pf-t--color--disabled--200) !important;
 }
+
+.pf-v6-theme-dark .camel-route-diagram {
+  color: var(--pf-t--color--black);
+}
+
+.pf-v6-theme-dark .node-tooltip-odd-row td {
+  color: var(--pf-t--global--text--color--100);
+}
+
+.pf-v6-theme-dark .node-tooltip-even-row td {
+  color: var(--pf-t--global--text--color--200);
+}
+
+.pf-v6-theme-dark .camel-route-diagram .route-diagram-side-popover,
+.pf-v6-theme-dark .camel-route-diagram .disabled {
+  color: var(--pf-t--color--white);
+}

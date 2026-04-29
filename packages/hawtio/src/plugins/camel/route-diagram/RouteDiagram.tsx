@@ -414,7 +414,9 @@ const CamelNodeActions: React.FunctionComponent<{ data: CamelNodeData }> = ({ da
 
   return (
     <NodeToolbar position={Position.Right}>
-      <Title headingLevel='h4'>Node actions</Title>
+      <Title className='route-diagram-side-popover' headingLevel='h4'>
+        Node actions
+      </Title>
       {data.type === 'from' && (
         <Switch
           id='camel-route-diagram-camel-node-start-stop-route'
