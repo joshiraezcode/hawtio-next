@@ -141,9 +141,14 @@
 }
 
 .highlighted {
+  border-color: var(--pf-t--color--black) !important;
+  box-shadow: 5px 5px var(--pf-t--global--border--color--nonstatus--gray--clicked);
+}
+
+.pf-v6-theme-dark .highlighted {
   border-color: var(--pf-t--global--background--color--100) !important;
 }
 
 .disabled {
-  background-color: var(--pf-t--color--disabled--200) !important;
+  background-color: var(--pf-t--global--color--nonstatus--gray--clicked) !important;
 }
