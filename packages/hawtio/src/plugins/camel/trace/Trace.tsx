@@ -25,13 +25,15 @@ export const Trace: React.FunctionComponent = () => {
     useRouteDiagramContext()
   const [isReading, setIsReading] = useState(true)
   const [isTracing, setIsTracing] = useState(false)
-  const messages = useRef<MessageData[]>([])
+  const previousMessages = useRef<MessageData[]>([])
+  const [parsedMessages, setParsedMessages] = useState<MessageData[]>(previousMessages.current)
   const [message, setMessage] = useState<MessageData>()
 
   const [msgPanelExpanded, setMsgPanelExpanded] = React.useState(false)
 
   const setMessages = (newMessages: MessageData[]) => {
-    messages.current = newMessages
+    previousMessages.current = newMessages
+    setParsedMessages(newMessages)
   }
 
   const populateRouteMessages = useCallback((value: string, routeNode: MBeanNode) => {
@@ -69,7 +71,7 @@ export const Trace: React.FunctionComponent = () => {
     /*
      * Adds new messages to existing stack
      */
-    const msgs = [...newMsgs, ...messages.current]
+    const msgs = [...newMsgs, ...previousMessages.current]
 
     /*
      * Remove messages when the array reaches its limit
@@ -243,46 +245,57 @@ export const Trace: React.FunctionComponent = () => {
                 <Panel id='route-message-table'>
                   <PanelHeader>Messages</PanelHeader>
                   <Divider />
-                  <PanelMain>
-                    <PanelMainBody id='route-message-table-body'>
-                      <Table aria-label='message table' variant='compact' isStriped>
-                        <Thead>
-                          <Tr>
-                            <Th>ID</Th>
-                            <Th>To Node</Th>
-                            <Th>Elapsed</Th>
-                            <Th>Endpoint Uri</Th>
-                            <Th>Is Remote?</Th>
-                            <Th>Service Url</Th>
-                            <Th>Protocol</Th>
-                            <Th>Metadata</Th>
-                          </Tr>
-                        </Thead>
-                        <Tbody isOddStriped>
-                          {messages.current.map(message => (
-                            <Tr
-                              key={message.uid}
-                              onRowClick={() => onRowSelected(message)}
-                              isRowSelected={isRowSelected(message)}
-                            >
-                              <Td dataLabel='ID'>
-                                <Button variant='link' isDisabled={!message} onClick={onMessagePanelToggle}>
-                                  {message.headers.breadcrumbId ? message.headers.breadcrumbId : message.uid}
-                                </Button>
-                              </Td>
-                              <Td dataLabel='ToNode'>{message.toNode}</Td>
-                              <Td dataLabel='Elapsed'>{message.elapsed}ms</Td>
-                              <Td dataLabel='EndpointUri'>{message.endpointUri}</Td>
-                              <Td dataLabel='IsRemote'>{message.isRemoteEndpoint}</Td>
-                              <Td dataLabel='ServiceUrl'>{message.endpointServiceUrl}</Td>
-                              <Td dataLabel='Protocol'>{message.endpointServiceProtocol}</Td>
-                              <Td dataLabel='Metadata'>{message.endpointServiceMetadata}</Td>
+                  {parsedMessages.length === 0 && (
+                    <PanelMain>
+                      <PanelMainBody>
+                        <Content className='tracing-on-no-messages' data-testid='tracing-on-no-messages' component='p'>
+                          Awaiting tracing messages.
+                        </Content>
+                      </PanelMainBody>
+                    </PanelMain>
+                  )}
+                  {parsedMessages.length !== 0 && (
+                    <PanelMain>
+                      <PanelMainBody id='route-message-table-body'>
+                        <Table aria-label='message table' variant='compact' isStriped>
+                          <Thead>
+                            <Tr>
+                              <Th>ID</Th>
+                              <Th>To Node</Th>
+                              <Th>Elapsed</Th>
+                              <Th>Endpoint Uri</Th>
+                              <Th>Is Remote?</Th>
+                              <Th>Service Url</Th>
+                              <Th>Protocol</Th>
+                              <Th>Metadata</Th>
                             </Tr>
-                          ))}
-                        </Tbody>
-                      </Table>
-                    </PanelMainBody>
-                  </PanelMain>
+                          </Thead>
+                          <Tbody isOddStriped>
+                            {parsedMessages.map(message => (
+                              <Tr
+                                key={message.uid}
+                                onRowClick={() => onRowSelected(message)}
+                                isRowSelected={isRowSelected(message)}
+                              >
+                                <Td dataLabel='ID'>
+                                  <Button variant='link' isDisabled={!message} onClick={onMessagePanelToggle}>
+                                    {message.headers.breadcrumbId ? message.headers.breadcrumbId : message.uid}
+                                  </Button>
+                                </Td>
+                                <Td dataLabel='ToNode'>{message.toNode}</Td>
+                                <Td dataLabel='Elapsed'>{message.elapsed}ms</Td>
+                                <Td dataLabel='EndpointUri'>{message.endpointUri}</Td>
+                                <Td dataLabel='IsRemote'>{message.isRemoteEndpoint}</Td>
+                                <Td dataLabel='ServiceUrl'>{message.endpointServiceUrl}</Td>
+                                <Td dataLabel='Protocol'>{message.endpointServiceProtocol}</Td>
+                                <Td dataLabel='Metadata'>{message.endpointServiceMetadata}</Td>
+                              </Tr>
+                            ))}
+                          </Tbody>
+                        </Table>
+                      </PanelMainBody>
+                    </PanelMain>
+                  )}
                 </Panel>
               </div>
             </MessageDrawer>
