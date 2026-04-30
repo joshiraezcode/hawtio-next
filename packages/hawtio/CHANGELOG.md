@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.2.0](https://github.com/hawtio/hawtio-react/compare/v2.1.0...v2.2.0) (2026-04-30)
+
+
+### Features
+
+* **runtime:** Added minutes/seconds for younger apps ([471034d](https://github.com/hawtio/hawtio-react/commit/471034d5b819aed3444af726ff2334d0a720fb67))
+* **ui:** Added camel notes ([fa29f77](https://github.com/hawtio/hawtio-react/commit/fa29f773e653edd46a7473277b635fe72c4cf363))
+
+
+### Bug Fixes
+
+* **chart, route-diagram:** Fixed text colors for dark-mode ([1a99cb0](https://github.com/hawtio/hawtio-react/commit/1a99cb0ead740db5709562cdce4c0ee3f8167c81))
+* **route-diagram:** Fixed coloring of borders and backgrounds ([f9e4cfd](https://github.com/hawtio/hawtio-react/commit/f9e4cfd7088fdfa26e1bc7b0cddd337ab7dbb261))
+
 ## [2.1.0](https://github.com/hawtio/hawtio-react/compare/v2.0.2...v2.1.0) (2026-04-23)
 
 
